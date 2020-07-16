@@ -34,6 +34,8 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Sneaky stuff</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>more sneaky stuff</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

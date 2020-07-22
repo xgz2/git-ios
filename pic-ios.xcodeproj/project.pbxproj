@@ -13,6 +13,7 @@
 		03452CEC24BCFC0A009E77CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03452CEB24BCFC0A009E77CC /* AppDelegate.swift */; };
 		03452CF224BCFC0E009E77CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03452CF124BCFC0E009E77CC /* Assets.xcassets */; };
 		03452CF524BCFC0E009E77CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03452CF424BCFC0E009E77CC /* Preview Assets.xcassets */; };
+		57E01FEA24C1076E00E6A9C6 /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E01FE924C1076E00E6A9C6 /* SelectionController.swift */; };
 		979289D361969E323C56AC58 /* Pods_pic_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EAF0040D75024B9A51B703 /* Pods_pic_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		20EAF0040D75024B9A51B703 /* Pods_pic_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pic_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F05BF6AEAA30A33D998FE6 /* Pods-pic-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pic-ios.release.xcconfig"; path = "Target Support Files/Pods-pic-ios/Pods-pic-ios.release.xcconfig"; sourceTree = "<group>"; };
 		4DB60529412E8EE4BBD2E5D5 /* Pods-pic-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pic-ios.debug.xcconfig"; path = "Target Support Files/Pods-pic-ios/Pods-pic-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		57E01FE924C1076E00E6A9C6 /* SelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				0339A6E624C77D8900FF7762 /* CameraViewController.swift */,
+				57E01FE924C1076E00E6A9C6 /* SelectionController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				03452CEC24BCFC0A009E77CC /* AppDelegate.swift in Sources */,
 				0340D38624C114710080328F /* PhotoCaptureDelegate.swift in Sources */,
 				0340D38324C0051B0080328F /* PreviewView.swift in Sources */,
+				57E01FEA24C1076E00E6A9C6 /* SelectionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

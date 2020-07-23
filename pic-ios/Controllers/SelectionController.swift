@@ -16,6 +16,7 @@ import TLPhotoPicker
 class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate {
 
     var selectedAssets = [TLPHAsset]()
+    var imgSelectedAssets = [UIImage?]()
     var label: UILabel!
     var imageView: UIImageView!
     
@@ -42,9 +43,11 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
         // use selected order, fullresolution image
         self.selectedAssets = withTLPHAssets
         // TODO: here, run the function where all the self.selectedAssets are being fed into the PyTorch stuff to be analyzed. selectedAssets are all selected photos but in TLPHAsset format!
-        // So we have TLPHAssets, to get the full res image you do:
-        // let image = asset.fullResolutionImage, where asset is one item in withTLPHAssets
-        
+        // now self.imgSelectedAssets is array of all the full res images of type UIImage. Send this to PyTorch!
+        for image in withTLPHAssets {
+            self.imgSelectedAssets.append(image.fullResolutionImage)
+        }
+        // Probably now will change view controllers to a new view where you can see maybe a loading screen, then once pytorch has analyzed all the photos then u see the grid view.
     return true
     }
 
@@ -60,4 +63,11 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         picker.present(alert, animated: true, completion: nil)
     }
+    
+    // Prob won't use this method, rn gets the first image
+    /*func displayImage() {
+        let asset = self.selectedAssets.first
+        let image = asset?.fullResolutionImage
+        // image is the first image chosen in the selected assets!
+    }*/
 }

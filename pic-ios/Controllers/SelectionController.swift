@@ -7,41 +7,57 @@
 //
 
 import UIKit
+import TLPhotoPicker
 import Photos
-import PhotosUI
 
-class SelectionController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+import Foundation
+import TLPhotoPicker
 
+class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate {
+
+    var selectedAssets = [TLPHAsset]()
+    var label: UILabel!
     var imageView: UIImageView!
-    var intensity: UISlider!
-    var currentImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "PIC"
         
-        // Calls importPicture() and starts the importing process to import a photo
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
+        // Placeholder UI for now
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pickerButtonTap))
     }
     
-    // Presents the photo library picker
-    @objc func importPicture() {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
+    @objc func pickerButtonTap() {
+        let viewController = TLPhotosPickerViewController()
+        viewController.delegate = self
+        var configure = TLPhotosPickerConfigure()
+        configure.numberOfColumn = 3
+        viewController.configure = configure
+        viewController.selectedAssets = self.selectedAssets
+        self.present(viewController, animated: true, completion: nil)
     }
-    
-    // When the user selects the photo
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else { return }
 
-        dismiss(animated: true)
-
-        currentImage = image
+    func shouldDismissPhotoPicker(withTLPHAssets: [TLPHAsset]) -> Bool {
+        // use selected order, fullresolution image
+        self.selectedAssets = withTLPHAssets
+        // TODO: here, run the function where all the self.selectedAssets are being fed into the PyTorch stuff to be analyzed. selectedAssets are all selected photos but in TLPHAsset format!
+        // So we have TLPHAssets, to get the full res image you do:
+        // let image = asset.fullResolutionImage, where asset is one item in withTLPHAssets
+        
+    return true
     }
-    
-    // currentImage is the image selected!
-    // TODO: change from UIImagePickerController to BSImagePicker to allow for multiple selection
+
+    func handleNoAlbumPermissions(picker: TLPhotosPickerViewController) {
+        picker.dismiss(animated: true) {
+            let alert = UIAlertController(title: "", message: "Denied albums permissions granted", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func handleNoCameraPermissions(picker: TLPhotosPickerViewController) {
+        let alert = UIAlertController(title: "", message: "Denied camera permissions granted", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        picker.present(alert, animated: true, completion: nil)
+    }
 }

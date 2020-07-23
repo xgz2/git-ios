@@ -1,20 +1,24 @@
 PODS:
   - CameraManager (5.1.3)
   - SnapKit (5.0.1)
+  - TLPhotoPicker (2.0.12)
 
 DEPENDENCIES:
   - CameraManager (~> 5.1)
   - SnapKit (~> 5.0.0)
+  - TLPhotoPicker
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CameraManager
     - SnapKit
+    - TLPhotoPicker
 
 SPEC CHECKSUMS:
   CameraManager: 73936a52093081ba5e44914e8120ab511360f5d4
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  TLPhotoPicker: 36001f4500867fea336c773c6013d6000e512a31
 
-PODFILE CHECKSUM: 41bc9fadadb6a7b666a2195719dc82ef7d61cf1e
+PODFILE CHECKSUM: 6398bbc89029e4c66733cc374828a0e9c21bec3f
 
 COCOAPODS: 1.9.3

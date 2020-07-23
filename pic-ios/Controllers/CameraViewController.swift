@@ -16,6 +16,7 @@ class CameraViewController: UIViewController {
     private let cameraManager = CameraManager()
     private let captureButton = UIButton()
     private let captureButtonSize = CGFloat(85)
+    private let containerView = UIView()
     
     private var myImage : UIImage?
 
@@ -24,6 +25,8 @@ class CameraViewController: UIViewController {
                 
         navigationController?.setNavigationBarHidden(true, animated: false)
 
+        view.addSubview(containerView)
+        
         cameraManager.cameraDevice = .back
         cameraManager.shouldEnableTapToFocus = true
         cameraManager.shouldEnablePinchToZoom = true
@@ -34,7 +37,7 @@ class CameraViewController: UIViewController {
         cameraManager.focusMode = .continuousAutoFocus
         cameraManager.exposureMode = .continuousAutoExposure
         cameraManager.shouldUseLocationServices = false
-        cameraManager.addPreviewLayerToView(self.view)
+        cameraManager.addPreviewLayerToView(containerView)
         
         captureButton.layer.cornerRadius = captureButtonSize / 2.0
         captureButton.backgroundColor = UIColor(red: 0.839, green: 0.839, blue: 0.839, alpha: 1.0)
@@ -42,7 +45,8 @@ class CameraViewController: UIViewController {
         captureButton.layer.borderWidth = 7
         captureButton.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
         captureButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(captureButton)
+        containerView.addSubview(captureButton)
+        containerView.bringSubviewToFront(captureButton)
         
         setupConstraints()
     }
@@ -65,6 +69,10 @@ class CameraViewController: UIViewController {
             make.bottom.equalToSuperview().offset(captureButttonBottomOffset)
             make.size.equalTo(captureButtonSize)
             make.centerX.equalToSuperview()
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalToSuperview()
         }
     }
     

@@ -66,6 +66,10 @@ class CameraViewController: UIViewController {
         })
     }
     
+    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
+        
+    }
+    
     func setupConstraints() {
         let captureButttonBottomOffset = -26
         

@@ -16,7 +16,8 @@ class CameraViewController: UIViewController {
     private let cameraManager = CameraManager()
     private let captureButton = UIButton()
     private let captureButtonSize = CGFloat(85)
-    private let containerView = UIView()
+    private let cameraContainer = UIView()
+    private let interfaceContainer = UIView()
     
     private var myImage : UIImage?
 
@@ -25,7 +26,7 @@ class CameraViewController: UIViewController {
                 
         navigationController?.setNavigationBarHidden(true, animated: false)
 
-        view.addSubview(containerView)
+        view.addSubview(cameraContainer)
         
         cameraManager.cameraDevice = .back
         cameraManager.shouldEnableTapToFocus = true
@@ -37,7 +38,11 @@ class CameraViewController: UIViewController {
         cameraManager.focusMode = .continuousAutoFocus
         cameraManager.exposureMode = .continuousAutoExposure
         cameraManager.shouldUseLocationServices = false
-        cameraManager.addPreviewLayerToView(containerView)
+        cameraManager.addPreviewLayerToView(cameraContainer)
+        
+        interfaceContainer.backgroundColor = .clear
+        view.addSubview(interfaceContainer)
+        view.bringSubviewToFront(interfaceContainer)
         
         captureButton.layer.cornerRadius = captureButtonSize / 2.0
         captureButton.backgroundColor = UIColor(red: 0.839, green: 0.839, blue: 0.839, alpha: 1.0)
@@ -45,8 +50,7 @@ class CameraViewController: UIViewController {
         captureButton.layer.borderWidth = 7
         captureButton.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
         captureButton.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(captureButton)
-        containerView.bringSubviewToFront(captureButton)
+        interfaceContainer.addSubview(captureButton)
         
         setupConstraints()
     }
@@ -71,7 +75,11 @@ class CameraViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
-        containerView.snp.makeConstraints { make in
+        cameraContainer.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalToSuperview()
+        }
+        
+        interfaceContainer.snp.makeConstraints { make in
             make.top.bottom.left.right.equalToSuperview()
         }
     }

@@ -6,12 +6,9 @@
 //  Copyright © 2020 George, Jonna, Judy. All rights reserved.
 //
 
-import UIKit
 import TLPhotoPicker
 import Photos
-
-import Foundation
-import TLPhotoPicker
+import UIKit
 
 class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate {
 
@@ -22,9 +19,7 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "PIC"
-        
+                
         // Placeholder UI for now
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pickerButtonTap))
     }

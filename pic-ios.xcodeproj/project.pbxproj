@@ -13,7 +13,7 @@
 		03452CEC24BCFC0A009E77CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03452CEB24BCFC0A009E77CC /* AppDelegate.swift */; };
 		03452CF224BCFC0E009E77CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03452CF124BCFC0E009E77CC /* Assets.xcassets */; };
 		03452CF524BCFC0E009E77CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03452CF424BCFC0E009E77CC /* Preview Assets.xcassets */; };
-		03AA361024CB6DC000AB9A48 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AA360F24CB6DC000AB9A48 /* ContainerViewController.swift */; };
+		03A2300824D20C190056220C /* PageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A2300724D20C190056220C /* PageCollectionViewController.swift */; };
 		57E01FEA24C1076E00E6A9C6 /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E01FE924C1076E00E6A9C6 /* SelectionController.swift */; };
 		979289D361969E323C56AC58 /* Pods_pic_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EAF0040D75024B9A51B703 /* Pods_pic_ios.framework */; };
 /* End PBXBuildFile section */
@@ -27,7 +27,7 @@
 		03452CF124BCFC0E009E77CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03452CF424BCFC0E009E77CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03452CF924BCFC0E009E77CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03AA360F24CB6DC000AB9A48 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		03A2300724D20C190056220C /* PageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PageCollectionViewController.swift; path = "/Users/georgezhuang/Documents/Code Projects/PIC/pic-ios/pic-ios/Controllers/PageCollectionViewController.swift"; sourceTree = "<absolute>"; };
 		20EAF0040D75024B9A51B703 /* Pods_pic_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pic_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F05BF6AEAA30A33D998FE6 /* Pods-pic-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pic-ios.release.xcconfig"; path = "Target Support Files/Pods-pic-ios/Pods-pic-ios.release.xcconfig"; sourceTree = "<group>"; };
 		4DB60529412E8EE4BBD2E5D5 /* Pods-pic-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pic-ios.debug.xcconfig"; path = "Target Support Files/Pods-pic-ios/Pods-pic-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				0339A6E624C77D8900FF7762 /* CameraViewController.swift */,
-				03AA360F24CB6DC000AB9A48 /* ContainerViewController.swift */,
+				03A2300724D20C190056220C /* PageCollectionViewController.swift */,
 				57E01FE924C1076E00E6A9C6 /* SelectionController.swift */,
 			);
 			path = Controllers;
@@ -247,8 +247,8 @@
 				03452CEC24BCFC0A009E77CC /* AppDelegate.swift in Sources */,
 				0340D38624C114710080328F /* PhotoCaptureDelegate.swift in Sources */,
 				0340D38324C0051B0080328F /* PreviewView.swift in Sources */,
-				03AA361024CB6DC000AB9A48 /* ContainerViewController.swift in Sources */,
 				57E01FEA24C1076E00E6A9C6 /* SelectionController.swift in Sources */,
+				03A2300824D20C190056220C /* PageCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,7 @@ class CameraViewController: UIViewController {
     private let captureButtonSize = CGFloat(85)
     private let cameraContainer = UIView()
     private let interfaceContainer = UIView()
+    private let loadingView = LoadingView()
     private let selectionButton = UIButton()
     
     private var myImage : UIImage?
@@ -62,6 +63,8 @@ class CameraViewController: UIViewController {
         selectionButton.translatesAutoresizingMaskIntoConstraints = false
         interfaceContainer.addSubview(selectionButton)
         
+        view.addSubview(loadingView)
+        
         setupConstraints()
     }
     
@@ -71,7 +74,7 @@ class CameraViewController: UIViewController {
     }
     
     @objc func capturePhoto() {
-        cameraManager.capturePictureWithCompletion({ result in
+        self.cameraManager.capturePictureWithCompletion({ result in
             switch result {
                 case .failure:
                     print("FAIL")
@@ -79,7 +82,7 @@ class CameraViewController: UIViewController {
                     self.myImage = content.asImage;
             }
         })
-        present(SelectionController(), animated: true, completion: nil)
+        loadingView.startAnimation()
     }
     
     func setupConstraints() {
@@ -103,6 +106,10 @@ class CameraViewController: UIViewController {
         selectionButton.snp.makeConstraints { make in
             make.centerY.equalTo(captureButton.snp.centerY)
             make.trailing.equalToSuperview().offset(selectionButtonTrailingOffset)
+        }
+        
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
         

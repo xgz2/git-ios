@@ -16,6 +16,7 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
     private let addButton = UIButton()
     private let cameraButton = UIButton()
     private let instructionsLabel = UILabel()
+    private let loadingView = LoadingView()
     private let picLogo = UIImageView(image: UIImage(named: "picLogo"))
 
     var selectedAssets = [TLPHAsset]()
@@ -25,6 +26,8 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        view.addSubview(loadingView)
         
         picLogo.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(picLogo)
@@ -85,6 +88,9 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
             make.bottom.trailing.equalToSuperview().offset(cameraButtonBottomTrailingOffset)
         }
         
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     @objc func pickerButtonTap() {
@@ -100,6 +106,8 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
     func shouldDismissPhotoPicker(withTLPHAssets: [TLPHAsset]) -> Bool {
         // use selected order, fullresolution image
         self.selectedAssets = withTLPHAssets
+        view.bringSubviewToFront(loadingView)
+        loadingView.startAnimation()
         // TODO: here, run the function where all the self.selectedAssets are being fed into the PyTorch stuff to be analyzed. selectedAssets are all selected photos but in TLPHAsset format!
         // now self.imgSelectedAssets is array of all the full res images of type UIImage. Send this to PyTorch!
         for image in withTLPHAssets {

@@ -17,7 +17,6 @@ class CameraViewController: UIViewController {
     private let captureButton = UIButton()
     private let captureButtonSize = CGFloat(85)
     private let cameraContainer = UIView()
-    private let interfaceContainer = UIView()
     private let loadingView = LoadingView()
     private let selectionButton = UIButton()
     
@@ -33,7 +32,7 @@ class CameraViewController: UIViewController {
         cameraManager.cameraDevice = .back
         cameraManager.shouldEnableTapToFocus = true
         cameraManager.shouldEnablePinchToZoom = true
-        cameraManager.shouldEnableExposure = true
+        cameraManager.shouldEnableExposure = false
         cameraManager.flashMode = .off
         cameraManager.cameraOutputMode = .stillImage
         cameraManager.cameraOutputQuality = .high
@@ -42,11 +41,7 @@ class CameraViewController: UIViewController {
         cameraManager.shouldUseLocationServices = false
         cameraManager.writeFilesToPhoneLibrary = false
         cameraManager.addPreviewLayerToView(cameraContainer)
-        
-        interfaceContainer.backgroundColor = .clear
-        view.addSubview(interfaceContainer)
-        view.bringSubviewToFront(interfaceContainer)
-        
+                
         captureButton.layer.cornerRadius = captureButtonSize / 2.0
         captureButton.backgroundColor = UIColor(red: 0.839, green: 0.839, blue: 0.839, alpha: 1.0)
         captureButton.layer.borderColor = UIColor.white.cgColor
@@ -57,12 +52,14 @@ class CameraViewController: UIViewController {
         captureButton.layer.shadowOpacity = 0.5
         captureButton.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
         captureButton.translatesAutoresizingMaskIntoConstraints = false
-        interfaceContainer.addSubview(captureButton)
+        captureButton.layer.zPosition = 10
+        cameraContainer.addSubview(captureButton)
         
         selectionButton.setImage(UIImage(named: "selectImage"), for: .normal)
         selectionButton.addTarget(self, action: #selector(selectionButtonAction(_:)), for: .touchUpInside)
         selectionButton.translatesAutoresizingMaskIntoConstraints = false
-        interfaceContainer.addSubview(selectionButton)
+        selectionButton.layer.zPosition = 10
+        cameraContainer.addSubview(selectionButton)
         
         view.addSubview(loadingView)
         
@@ -104,10 +101,6 @@ class CameraViewController: UIViewController {
         }
         
         cameraContainer.snp.makeConstraints { make in
-            make.top.bottom.left.right.equalToSuperview()
-        }
-        
-        interfaceContainer.snp.makeConstraints { make in
             make.top.bottom.left.right.equalToSuperview()
         }
         

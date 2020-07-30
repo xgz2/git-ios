@@ -40,6 +40,7 @@ class CameraViewController: UIViewController {
         cameraManager.focusMode = .continuousAutoFocus
         cameraManager.exposureMode = .continuousAutoExposure
         cameraManager.shouldUseLocationServices = false
+        cameraManager.writeFilesToPhoneLibrary = false
         cameraManager.addPreviewLayerToView(cameraContainer)
         
         interfaceContainer.backgroundColor = .clear
@@ -82,7 +83,14 @@ class CameraViewController: UIViewController {
                     self.myImage = content.asImage;
             }
         })
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({
+            let vc = CameraDetailViewController(photoTaken: self.myImage!)
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: false, completion: nil)
+        })
         loadingView.startAnimation()
+        CATransaction.commit()
     }
     
     func setupConstraints() {

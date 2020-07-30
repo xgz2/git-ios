@@ -98,6 +98,7 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
         viewController.delegate = self
         var configure = TLPhotosPickerConfigure()
         configure.numberOfColumn = 3
+        configure.usedCameraButton = false
         viewController.configure = configure
         viewController.selectedAssets = self.selectedAssets
         self.present(viewController, animated: true, completion: nil)

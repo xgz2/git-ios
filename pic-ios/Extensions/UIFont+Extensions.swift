@@ -14,4 +14,5 @@ extension UIFont {
     static let _64NunitoRegular = UIFont(name: "Nunito-Regular", size: 64)
     
     static let _20NunitoBold = UIFont(name: "Nunito-Bold", size: 20)
+    static let _30NunitoBold = UIFont(name: "Nunito-Bold", size: 30)
 }

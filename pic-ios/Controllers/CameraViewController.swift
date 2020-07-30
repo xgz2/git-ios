@@ -18,6 +18,7 @@ class CameraViewController: UIViewController {
     private let captureButtonSize = CGFloat(85)
     private let cameraContainer = UIView()
     private let interfaceContainer = UIView()
+    private let selectionButton = UIButton()
     
     private var myImage : UIImage?
 
@@ -48,11 +49,25 @@ class CameraViewController: UIViewController {
         captureButton.backgroundColor = UIColor(red: 0.839, green: 0.839, blue: 0.839, alpha: 1.0)
         captureButton.layer.borderColor = UIColor.white.cgColor
         captureButton.layer.borderWidth = 7
+        captureButton.layer.shadowColor = UIColor.black.cgColor
+        captureButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        captureButton.layer.shadowRadius = 5
+        captureButton.layer.shadowOpacity = 0.5
         captureButton.addTarget(self, action: #selector(capturePhoto), for: .touchUpInside)
         captureButton.translatesAutoresizingMaskIntoConstraints = false
         interfaceContainer.addSubview(captureButton)
         
+        selectionButton.setImage(UIImage(named: "selectImage"), for: .normal)
+        selectionButton.addTarget(self, action: #selector(selectionButtonAction(_:)), for: .touchUpInside)
+        selectionButton.translatesAutoresizingMaskIntoConstraints = false
+        interfaceContainer.addSubview(selectionButton)
+        
         setupConstraints()
+    }
+    
+    @objc func selectionButtonAction(_ sender: Any){
+        let pageViewController = self.parent as! ContainerPageViewController
+        pageViewController.nextPageWithIndex(index: 1)
     }
     
     @objc func capturePhoto() {
@@ -68,7 +83,8 @@ class CameraViewController: UIViewController {
     }
     
     func setupConstraints() {
-        let captureButttonBottomOffset = -26
+        let captureButttonBottomOffset = -36
+        let selectionButtonTrailingOffset = -35
         
         captureButton.snp.makeConstraints{ make in
             make.bottom.equalToSuperview().offset(captureButttonBottomOffset)
@@ -82,6 +98,11 @@ class CameraViewController: UIViewController {
         
         interfaceContainer.snp.makeConstraints { make in
             make.top.bottom.left.right.equalToSuperview()
+        }
+        
+        selectionButton.snp.makeConstraints { make in
+            make.centerY.equalTo(captureButton.snp.centerY)
+            make.trailing.equalToSuperview().offset(selectionButtonTrailingOffset)
         }
     }
         

@@ -24,8 +24,12 @@ class ContainerPageViewController: UIPageViewController {
         didMove(toParent: self)
     }
     
-    func nextPageWithIndex(index: Int) {
+    func prevPageWithIndex(index: Int) {
         setViewControllers([pages[index]], direction: .reverse, animated: true, completion: nil)
+    }
+    
+    func nextPageWithIndex(index: Int) {
+        setViewControllers([pages[index]], direction: .forward, animated: true, completion: nil)
     }
     
 }

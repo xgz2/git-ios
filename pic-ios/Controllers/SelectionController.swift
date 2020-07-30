@@ -42,16 +42,16 @@ class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate
         view.addSubview(addButton)
         
         cameraButton.setImage(UIImage(named: "cameraImage"), for: .normal)
-        cameraButton.addTarget(self, action: #selector(nextButtonAction(_:)), for: .touchUpInside)
+        cameraButton.addTarget(self, action: #selector(cameraButtonAction(_:)), for: .touchUpInside)
         cameraButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(cameraButton)
         
         setupConstraints()
     }
     
-    @objc func nextButtonAction(_ sender: Any){
+    @objc func cameraButtonAction(_ sender: Any){
         let pageViewController = self.parent as! ContainerPageViewController
-        pageViewController.nextPageWithIndex(index: 0)
+        pageViewController.prevPageWithIndex(index: 0)
     }
     
     func setupConstraints() {

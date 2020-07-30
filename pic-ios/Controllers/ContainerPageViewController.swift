@@ -15,7 +15,7 @@ class ContainerPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .green
+        view.backgroundColor = .white
         
         dataSource = self
         delegate = self
@@ -24,12 +24,16 @@ class ContainerPageViewController: UIPageViewController {
         didMove(toParent: self)
     }
     
+    func nextPageWithIndex(index: Int) {
+        setViewControllers([pages[index]], direction: .reverse, animated: true, completion: nil)
+    }
+    
 }
 
 extension ContainerPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     /*
-     Comments About Setup: I believe that this is not the most optimized setup of a UIPageViewController. However, for the purposes of a two page app, it is effective.
+     Comments About Setup: I believe that this is not the most optimized setup of a UIPageViewController. However, for the purposes of a two page app, it is effective. A better implementation would use UIScrollView to add more customization (specifically, to remove bouncing at the end of the view.)
      */
 
     // Called when swipe left

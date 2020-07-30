@@ -8,27 +8,83 @@
 
 import TLPhotoPicker
 import Photos
+import SnapKit
 import UIKit
 
 class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate {
     
     private let addButton = UIButton()
+    private let cameraButton = UIButton()
     private let instructionsLabel = UILabel()
+    private let picLogo = UIImageView(image: UIImage(named: "picLogo"))
 
     var selectedAssets = [TLPHAsset]()
     var imgSelectedAssets = [UIImage?]()
-    var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .green
+        view.backgroundColor = .white
+        
+        picLogo.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(picLogo)
         
         instructionsLabel.text = "Photos all look the same?\nDon’t know which one to use?"
+        instructionsLabel.numberOfLines = 0
+        instructionsLabel.textAlignment = .center
+        instructionsLabel.font = ._27NunitoRegular
         instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(instructionsLabel)
                 
+        addButton.setImage(UIImage(named: "uploadImage"), for: .normal)
+        addButton.addTarget(self, action: #selector(pickerButtonTap), for: .touchUpInside)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addButton)
+        
+        cameraButton.setImage(UIImage(named: "cameraImage"), for: .normal)
+        cameraButton.addTarget(self, action: #selector(nextButtonAction(_:)), for: .touchUpInside)
+        cameraButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(cameraButton)
+        
+        setupConstraints()
+    }
+    
+    @objc func nextButtonAction(_ sender: Any){
+        let pageViewController = self.parent as! ContainerPageViewController
+        pageViewController.nextPageWithIndex(index: 0)
+    }
+    
+    func setupConstraints() {
+        let addButtonTopOffset = 22
+        let cameraButtonBottomTrailingOffset = -22
+        let instructionsLabelLeadingOffset = 20
+        let instructionsLabelTopOffset = 200
+        let instructionsLabelTrailingOffset = -20
+        let picLogoTopOffset = 60
+        let picLogoWidth = 100
+        
+        picLogo.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(picLogoTopOffset)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(picLogoWidth)
+        }
+        
+        instructionsLabel.snp.makeConstraints { make in
+            make.top.equalTo(picLogo.snp.bottom).offset(instructionsLabelTopOffset)
+            make.leading.equalToSuperview().offset(instructionsLabelLeadingOffset)
+            make.trailing.equalToSuperview().offset(instructionsLabelTrailingOffset)
+            make.centerX.equalToSuperview()
+        }
+        
+        addButton.snp.makeConstraints { make in
+            make.top.equalTo(instructionsLabel.snp.bottom).offset(addButtonTopOffset)
+            make.centerX.equalToSuperview()
+        }
+        
+        cameraButton.snp.makeConstraints { make in
+            make.bottom.trailing.equalToSuperview().offset(cameraButtonBottomTrailingOffset)
+        }
+        
     }
     
     @objc func pickerButtonTap() {

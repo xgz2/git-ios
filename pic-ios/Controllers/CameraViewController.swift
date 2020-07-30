@@ -64,6 +64,7 @@ class CameraViewController: UIViewController {
                     self.myImage = content.asImage;
             }
         })
+        present(SelectionController(), animated: true, completion: nil)
     }
     
     func setupConstraints() {

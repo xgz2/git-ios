@@ -11,17 +11,24 @@ import Photos
 import UIKit
 
 class SelectionController: UIViewController,TLPhotosPickerViewControllerDelegate {
+    
+    private let addButton = UIButton()
+    private let instructionsLabel = UILabel()
 
     var selectedAssets = [TLPHAsset]()
     var imgSelectedAssets = [UIImage?]()
     var label: UILabel!
-    var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .green
+        
+        instructionsLabel.text = "Photos all look the same?\nDon’t know which one to use?"
+        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
                 
-        // Placeholder UI for now
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pickerButtonTap))
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(addButton)
     }
     
     @objc func pickerButtonTap() {

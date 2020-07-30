@@ -13,8 +13,9 @@ class PageCollectionViewController: UICollectionViewController, UICollectionView
     private let reuseIdentifier = "Cell"
     private let selectionView = SelectionController()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         setupCollectionView()
     }
     
@@ -37,7 +38,7 @@ class PageCollectionViewController: UICollectionViewController, UICollectionView
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        let viewControllers = [selectionView]
+        let viewControllers = [cameraView, selectionView]
         display(contentController: viewControllers[indexPath.item], on: cell)
         return cell
     }
@@ -48,7 +49,6 @@ class PageCollectionViewController: UICollectionViewController, UICollectionView
     
     func display(contentController content: UIViewController, on view: UIView) {
         self.addChild(content)
-        content.view.frame = view.bounds
         view.addSubview(content.view)
         content.didMove(toParent: self)
     }

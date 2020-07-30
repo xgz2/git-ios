@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let layout = UICollectionViewFlowLayout()
 //        window?.rootViewController = UINavigationController(rootViewController: PageCollectionViewController(collectionViewLayout: layout))
-        window?.rootViewController = UINavigationController(rootViewController: SelectionController())
+        window?.rootViewController = UINavigationController(rootViewController: ContainerPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil))
         
         return true
     }
